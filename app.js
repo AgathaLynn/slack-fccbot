@@ -46,5 +46,10 @@ app.post("/test", function(req, res){
 });
 
 app.post('/fccbot', function(req, res) {
-  res.send("Request received. Har-har-har.");
+  // for right now, we're just sending info on the markdown previewer
+  var format = require('./message-formatter.js');
+  var info = require('./sample-challenge-info.js')();
+
+  // reply with info on challenge
+  res.json(format(info));
 });
