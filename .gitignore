@@ -1,6 +1,9 @@
 # Environmental Variables
 .env
 
+# Linter
+.jshintrc
+
 # Logs
 logs
 *.log
