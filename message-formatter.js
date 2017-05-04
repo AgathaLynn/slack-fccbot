@@ -1,4 +1,6 @@
-
+/*
+FUNCTIONS TO FORMAT MESSAGES WITH USER STORIES
+*/
 // given message object, formats "text-only" replay for slack
 function formatText(message) {
   var msg = {};

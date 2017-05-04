@@ -1,3 +1,4 @@
+// require packages
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
@@ -8,14 +9,17 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// start listening
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
 
+// for testing
 app.get('/', function(req, res) {
   res.send("Working! Path Hit: " + req.url);
 });
 
+// for authentication
 app.get('/oauth', function(req, res) {
   console.log(req.query);
   if (!req.query.code) {
@@ -39,17 +43,24 @@ app.get('/oauth', function(req, res) {
   }
 });
 
-
-app.post("/test", function(req, res){
-    console.log(req.body);
-    res.send("test is working");
-});
-
+// now we're in business
 app.post('/fccbot', function(req, res) {
-  // for right now, we're just sending info on the markdown previewer
+  // we need some outside code
+  var data = require('./data.js');
   var format = require('./message-formatter.js');
-  var info = require('./sample-challenge-info.js')();
+  var info = require('./sample-challenge-info.js')(); // just markdown previewer
 
-  // reply with info on challenge
-  res.json(format(info));
+  // get information about request
+  console.log(req.body.text);
+  var challenge = data.findChallenge(req.body.text);
+
+  if (challenge) {
+    info.name = challenge;
+    // right now I'm just replying info on the markdown previewer. Yeah, that's lame
+    res.json(format(info));
+  }
+  else {
+    // I'll want to eventually give something useful. Right now just sayin' sorry
+    res.json({text: "Sorry. Couldn't find that."});
+  }
 });
