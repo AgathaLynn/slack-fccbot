@@ -53,14 +53,20 @@ app.post('/fccbot', function(req, res) {
   // get information about request
   console.log(req.body.text);
   var challenge = data.findChallenge(req.body.text);
-
   if (challenge) {
     info.name = challenge;
     // right now I'm just replying info on the markdown previewer. Yeah, that's lame
-    res.json(format(info));
+    res.json(format.userStories(info));
   }
   else {
-    // I'll want to eventually give something useful. Right now just sayin' sorry
-    res.json({text: "Sorry. Couldn't find that."});
+    // lets try to find the category
+    var category = data.findChallengesByCategory(req.body.text);
+    if (category) {
+      res.json(format.challengesInCategory(category));
+    }
+    else {
+      // I'll want to eventually give something useful. Right now just sayin' sorry
+      res.json({text: "Sorry. Couldn't find that."});
+    }
   }
 });
