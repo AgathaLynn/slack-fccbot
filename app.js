@@ -3,6 +3,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 
+// for formatting reponses
+var data = require('./data.js');
+var format = require('./responses.js');
+var info = require('./sample-challenge-info.js')(); // just markdown previewer
+
 require('dotenv').config();
 var app = express();
 
@@ -24,7 +29,7 @@ app.get('/oauth', function(req, res) {
   console.log(req.query);
   if (!req.query.code) {
     res.status(500);
-    res.send({"error": "looks like we're not getting ocde"});
+    res.send({"error": "looks like we're not getting code"});
     console.log("error: looks like we're not getting code");
   }
   else {
@@ -45,28 +50,32 @@ app.get('/oauth', function(req, res) {
 
 // now we're in business
 app.post('/fccbot', function(req, res) {
-  // we need some outside code
-  var data = require('./data.js');
-  var format = require('./message-formatter.js');
-  var info = require('./sample-challenge-info.js')(); // just markdown previewer
 
   // get information about request
   console.log(req.body.text);
   var challenge = data.findChallenge(req.body.text);
   if (challenge) {
     info.name = challenge;
-    // right now I'm just replying info on the markdown previewer. Yeah, that's lame
+    // right now I'm just replying info on the markdown previewer.
+    // we'll get rid of the "info" variable and include real information
     res.json(format.userStories(info));
   }
   else {
     // lets try to find the category
     var category = data.findChallengesByCategory(req.body.text);
     if (category) {
-      res.json(format.challengesInCategory(category));
+      res.json(format.categorySelector(category));
     }
     else {
-      // I'll want to eventually give something useful. Right now just sayin' sorry
-      res.json({text: "Sorry. Couldn't find that."});
+      res.json({text: "Sorry. Couldn't find that. If you tell me what certificate your working towards, I might be able to help. Try '/fccbot [certificate name]'.'"}); // we can try to replace this with something helpful
     }
   }
+});
+
+// handles response to "select challenge from category" drop-down menu
+app.post('/select-challenge', function(req, res) {
+  var request_info = JSON.parse(req.body.payload);
+  var selection = request_info.actions[0].selected_options[0].value;
+
+  res.json(format.userStories(info));
 });
