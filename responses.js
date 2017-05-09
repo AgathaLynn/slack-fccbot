@@ -3,20 +3,6 @@ FUNCTIONS TO FORMAT RESPONSES SENT TO USER
 */
 
 /////
-// Apologies
-/////
-
-// apology - not implemented
-function apology1() {
-  return {text: "Sorry - Information for that challenge hasn't been implemented yet."};
-}
-
-// apology - haven't a clue
-function apology2() {
-  return {text: "Sorry. Couldn't find that. If you tell me what certificate you're working towards, I might be able to help. Try '/fccbot [certificate name]'.'"};
-}
-
-/////
 // Welcome message (for when no query provided)
 /////
 
@@ -41,6 +27,11 @@ function welcome(name) {
 // USER STORY RESPONSES (to deliver info on challenges)
 /////
 function userStories(challenge, message) {
+
+  // if no info, apologize
+  if (!challenge) {
+    return apology1();
+  }
 
   //build text of message
   var text = `Here's what I found on the "${challenge.name}" challenge:`;
@@ -70,6 +61,11 @@ function userStories(challenge, message) {
 /////
 
 function categorySelector(data, message) {
+
+  // if no challenges, apologize
+  if (!data) {
+    return apology2();
+  }
 
   // build text of message
   var text = `Are you looking for one the ${data.category} challenges?`;
@@ -104,6 +100,20 @@ function categorySelector(data, message) {
     text: text,
     attachments: [attachment]
   };
+}
+
+/////
+// APOLOGY (helper) FUNCTIONS
+/////
+
+// apology - not implemented
+function apology1() {
+  return {text: "Sorry - Information for that challenge hasn't been implemented yet."};
+}
+
+// apology - haven't a clue
+function apology2() {
+  return {text: "Sorry. Couldn't find that. If you tell me what certificate you're working towards, I might be able to help. Try '/fccbot [certificate name]'.'"};
 }
 
 /////
@@ -152,7 +162,5 @@ function formatUnorderedList(arr) {
 /////
 
 module.exports.welcome = welcome;
-module.exports.apology1 = apology1;
-module.exports.apology2 = apology2;
 module.exports.userStories = userStories;
 module.exports.categorySelector = categorySelector;

@@ -53,9 +53,6 @@ app.post('/fccbot', function(req, res) {
   // declare response variable
   var response;
 
-  // get information about request
-  console.log(req.body);
-
   // if user provides no info, let's help them along
   if (req.body.text === '') {
     response = format.welcome(req.body.user_name);
@@ -65,16 +62,16 @@ app.post('/fccbot', function(req, res) {
   else {
     let challenge = data.findChallenge(req.body.text);
 
-    // if we find a challenge, send back info (or apology)
+    // if we find a challenge, respond with info or apology
     if (challenge) {
       let challenge_info = data.findChallengeInfo(challenge);
-      response = challenge_info ? format.userStories(challenge_info) : format.apology1();
+      response = format.userStories(challenge_info);
     }
 
-    // if not, let's try to find a category
+    // if not, let's look for a category & respond appropriately
     else {
       let category = data.findChallengesByCategory(req.body.text);
-      response = category ? format.categorySelector(category) : format.apology2();
+      response = format.categorySelector(category);
     }
   }
 
