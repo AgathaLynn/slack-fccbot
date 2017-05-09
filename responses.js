@@ -3,6 +3,20 @@ FUNCTIONS TO FORMAT RESPONSES SENT TO USER
 */
 
 /////
+// Apologies
+/////
+
+// apology - not implemented
+function apology1() {
+  return {text: "Sorry - Information for that challenge hasn't been implemented yet."};
+}
+
+// apology - haven't a clue
+function apology2() {
+  return {text: "Sorry. Couldn't find that. If you tell me what certificate you're working towards, I might be able to help. Try '/fccbot [certificate name]'.'"};
+}
+
+/////
 // Welcome message (for when no query provided)
 /////
 
@@ -138,5 +152,7 @@ function formatUnorderedList(arr) {
 /////
 
 module.exports.welcome = welcome;
+module.exports.apology1 = apology1;
+module.exports.apology2 = apology2;
 module.exports.userStories = userStories;
 module.exports.categorySelector = categorySelector;
