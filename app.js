@@ -50,43 +50,33 @@ app.get('/oauth', function(req, res) {
 // now we're in business
 app.post('/fccbot', function(req, res) {
 
-  // get information about request
-  console.log(req.body);
+  // declare response variable
+  var response;
 
   // if user provides no info, let's help them along
   if (req.body.text === '') {
-    res.json(format.welcome(req.body.user_name));
-    return;
+    response = format.welcome(req.body.user_name);
   }
 
-  // otherwise, let's try to find the challenge
-  var challenge = data.findChallenge(req.body.text);
-
-  // if we find it...
-  if (challenge) {
-
-    // ...get and send challenge info or error message:
-    let challenge_info = data.findChallengeInfo(challenge);
-    if (challenge_info) {
-      res.json(format.userStories(challenge_info));
-    }
-    else {
-      res.json({text: "Sorry - Information for that challenge hasn't been implemented yet."});
-    }
-  }
-
-  // if not...
+  // otherwise, let's see if they sent a challenge name
   else {
-    // ... then at least try to find the category:
-    let category = data.findChallengesByCategory(req.body.text);
-    if (category) {
-      res.json(format.categorySelector(category));
+    let challenge = data.findChallenge(req.body.text);
+
+    // if we find a challenge, respond with info or apology
+    if (challenge) {
+      let challenge_info = data.findChallengeInfo(challenge);
+      response = format.userStories(challenge_info);
     }
-    // ... and if even that fails:
+
+    // if not, let's look for a category & respond appropriately
     else {
-      res.json({text: "Sorry. Couldn't find that. If you tell me what certificate your working towards, I might be able to help. Try '/fccbot [certificate name]'.'"}); // we can try to replace this with something helpful
+      let category = data.findChallengesByCategory(req.body.text);
+      response = format.categorySelector(category);
     }
   }
+
+  // okay... let's send back our response
+  res.json(response);
 });
 
 // handles response to "select challenge from category" drop-down menu
