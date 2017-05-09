@@ -6,7 +6,6 @@ const request = require('request');
 // for formatting reponses
 var data = require('./data.js');
 var format = require('./responses.js');
-var info = require('./sample-challenge-info.js')(); // just markdown previewer
 
 require('dotenv').config();
 var app = express();
@@ -52,20 +51,38 @@ app.get('/oauth', function(req, res) {
 app.post('/fccbot', function(req, res) {
 
   // get information about request
-  console.log(req.body.text);
-  var challenge = data.findChallenge(req.body.text);
-  if (challenge) {
-    info.name = challenge;
-    // right now I'm just replying info on the markdown previewer.
-    // we'll get rid of the "info" variable and include real information
-    res.json(format.userStories(info));
+  console.log(req.body);
+
+  // if user provides no info, let's help them along
+  if (req.body.text === '') {
+    res.json(format.welcome(req.body.user_name));
+    return;
   }
+
+  // otherwise, let's try to find the challenge
+  var challenge = data.findChallenge(req.body.text);
+
+  // if we find it...
+  if (challenge) {
+
+    // ...get and send challenge info or error message:
+    let challenge_info = data.findChallengeInfo(challenge);
+    if (challenge_info) {
+      res.json(format.userStories(challenge_info));
+    }
+    else {
+      res.json({text: "Sorry - Information for that challenge hasn't been implemented yet."});
+    }
+  }
+
+  // if not...
   else {
-    // lets try to find the category
-    var category = data.findChallengesByCategory(req.body.text);
+    // ... then at least try to find the category:
+    let category = data.findChallengesByCategory(req.body.text);
     if (category) {
       res.json(format.categorySelector(category));
     }
+    // ... and if even that fails:
     else {
       res.json({text: "Sorry. Couldn't find that. If you tell me what certificate your working towards, I might be able to help. Try '/fccbot [certificate name]'.'"}); // we can try to replace this with something helpful
     }
@@ -76,6 +93,11 @@ app.post('/fccbot', function(req, res) {
 app.post('/select-challenge', function(req, res) {
   var request_info = JSON.parse(req.body.payload);
   var selection = request_info.actions[0].selected_options[0].value;
-
-  res.json(format.userStories(info));
+  var challenge_info = data.findChallengeInfo(selection);
+  if (challenge_info) {
+    res.json(format.userStories(challenge_info));
+  }
+  else {
+    res.json({text: "Sorry - Information for that challenge hasn't been implemented yet."});
+  }
 });

@@ -3,7 +3,28 @@ FUNCTIONS TO FORMAT RESPONSES SENT TO USER
 */
 
 /////
-// USER STORY RESPONSES
+// Welcome message (for when no query provided)
+/////
+
+function welcome(name) {
+  var greetings = [
+    `:wave: Hello, ${name}!
+    I'm fccBot, at your service.`,
+    `Hi, ${name}, you called? :telephone_receiver:`,
+  ];
+
+  var greeting = greetings[Math.floor(Math.random() * greetings.length)];
+  var text = `${greeting}
+  If you're looking for information about one of the freeCodeCamp challenges, I'm here to help. Just let me know the name of the challenge, or what certificate you're working towards.
+
+  Like this: */fccbot front-end development*
+  `;
+
+  return {text};
+}
+
+/////
+// USER STORY RESPONSES (to deliver info on challenges)
 /////
 function userStories(challenge, message) {
 
@@ -60,7 +81,7 @@ function categorySelector(data, message) {
   var attachment = {
     fallback: formatUnorderedList(data.challenges),
     color: '#006400',
-    callback_id: 'challenge-selection',
+    callback_id: 'select-challenge',
     actions: [action]
   };
 
@@ -71,9 +92,8 @@ function categorySelector(data, message) {
   };
 }
 
-
 /////
-// BUILDING BLOCK FUNCTIONS
+// BUILDING BLOCK (helper) FUNCTIONS
 /////
 
 function formatUserStories(challenge) {
@@ -82,12 +102,15 @@ function formatUserStories(challenge) {
   // add user stories
   rows.push("User Stories:\n" + formatUnorderedList(challenge.stories));
 
-  // add hints and notes
+  // add hints, notes, updates
   if (challenge.hints.length) {
     rows.push("\nHints:\n" + formatUnorderedList(challenge.hints));
   }
   if (challenge.notes.length) {
     rows.push("\nNotes:\n" + formatUnorderedList(challenge.notes));
+  }
+  if (challenge.updates.length) {
+    rows.push("\nUpdates: \n" + formatUnorderedList(challenge.updates));
   }
 
   // return text
@@ -114,5 +137,6 @@ function formatUnorderedList(arr) {
 // EXPORT STUFF
 /////
 
+module.exports.welcome = welcome;
 module.exports.userStories = userStories;
 module.exports.categorySelector = categorySelector;

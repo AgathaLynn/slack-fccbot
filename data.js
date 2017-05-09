@@ -1,3 +1,100 @@
+var challenge_info = [
+  {
+    name: 'Build a Tribute Page',
+    category: 'Basic Front End Development Projects',
+    certificate: 'Front End Development Certification',
+    objective: 'Build a CodePen.io app that is functionally similar to this: https://codepen.io/FreeCodeCamp/full/NNvBQW/.',
+    stories: [
+      'I can view a tribute page with an image and text.',
+      'I can click on a link that will take me to an external website with further information on the topic.'
+    ],
+    hints: [],
+    notes: [],
+    updates: [],
+    link: 'https://www.freecodecamp.com/challenges/build-a-tribute-page'
+  },
+  {
+    name: 'Build a Personal Portfolio Webpage',
+    category: 'Basic Front End Development Projects',
+    certificate: 'Front End Development Certification',
+    objective: 'Build a CodePen.io app that is functionally similar to this: https://codepen.io/FreeCodeCamp/full/YqLyXB/.',
+    stories: [
+      'I can access all of the portfolio webpage\'s content just by scrolling.',
+      'I can click different buttons that will take me to the portfolio creator\'s different social media pages',
+      'I can see thumbnail images of different projects the portfolio creator has built (if you haven\'t built any websites before, use placeholders.)',
+      'I navigate to different sections of the webpage by clicking buttons in the navigation.'
+    ],
+    hints: [],
+    notes: [],
+    updates: [],
+    link: 'https://www.freecodecamp.com/challenges/build-a-personal-portfolio-webpage'
+  },
+  {
+    name: 'Build a Random Quote Machine',
+    category: 'Intermediate Front End Development Projects',
+    certificate: 'Front End Development Certification',
+    objective: 'Build a CodePen.io app that is functionally similar to this: https://codepen.io/FreeCodeCamp/full/ONjoLe/.',
+    stories: [
+      'I can click a button to show me a new random quote.',
+      'I can press a button to tweet out a quote.'
+    ],
+    hints: [],
+    notes: [],
+    updates: [],
+    link: 'https://www.freecodecamp.com/challenges/build-a-random-quote-machine'
+  },
+  {
+    name: 'Show the Local Weather',
+    category: 'Intermediate Front End Development Projects',
+    certificate: 'Front End Development Certification',
+    objective: 'Build a CodePen.io app that is functionally similar to this: http://codepen.io/FreeCodeCamp/full/bELRjV.',
+    stories: [
+      'I can see the weather in my current location',
+      'I can see a different icon or background image (e.g. snowy mountain, hot desert) depending on the weather.',
+      'I can push a button to toggle between Fahrenheit and Celsius'
+    ],
+    hints: [],
+    notes: [
+      'Many internet browsers now require an HTTP Secure (https://) connection to obtain a user\'s locale via HTML5 Geolocation. For this reason, you will need to choose one of two paths to complete this project: ...'
+    ],
+    updates: [],
+    link: 'https://www.freecodecamp.com/challenges/show-the-local-weather'
+  },
+  {
+    name: 'Build a Wikipedia Viewer',
+    category: 'Intermediate Front End Development Projects',
+    certificate: 'Front End Development Certification',
+    objective: 'Objective: Build a CodePen.io app that is functionally similar to this: https://codepen.io/FreeCodeCamp/full/wGqEga/.',
+    stories: [
+      'I can search Wikipedia entries in a search box and see the resulting Wikipedia entries',
+      'I can click a button to see a random Wikipedia entry.'
+    ],
+    hints: [
+      'Here\'s a URL you can use to get a random Wikipedia article: https://en.wikipedia.org/wiki/Special:Random.',
+      'Here\'s an entry on using Wikipedia\'s API: https://www.mediawiki.org/wiki/API:Main_page.',
+      'Use this link to experiment with Wikipedia\'s API: https://en.wikipedia.org/wiki/Special:ApiSandbox#action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=jsonfm.'
+    ],
+    notes: [],
+    updates: [],
+    link: 'https://www.freecodecamp.com/challenges/build-a-wikipedia-viewer'
+  }
+];
+
+/*
+TEMPLATE FOR CHALLENGE INFO
+{
+  name: '',
+  category: '',
+  certificate: '',
+  objective: '',
+  stories: [],
+  hints: [],
+  notes: [],
+  updates: [],
+  link: ''
+}
+*/
+
 var challenge_names = [
   {name: 'Build a Tribute Page', certificate: 'Front End Development Certification'},
   {name: 'Build a Personal Portfolio Webpage', certificate: 'Front End Development Certification'},
@@ -124,8 +221,18 @@ function findChallenge(text) {
   }
 }
 
+function findChallengeInfo(name) {
+  for (var i = 0; i < challenge_info.length; i++) {
+    if (challenge_info[i].name.toLowerCase() === name.toLowerCase()) {
+      return challenge_info[i];
+    }
+  }
+  return undefined;
+}
+
 module.exports.findChallenge = findChallenge;
 module.exports.findChallengesByCategory = findChallengesByCategory;
+module.exports.findChallengeInfo = findChallengeInfo;
 /*
 var test_queries = [
   'header parser',
