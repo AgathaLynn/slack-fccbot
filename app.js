@@ -81,13 +81,12 @@ app.post('/fccbot', function(req, res) {
 
 // handles response to "select challenge from category" drop-down menu
 app.post('/select-challenge', function(req, res) {
+
+  // get user selected challenge from user response
   var request_info = JSON.parse(req.body.payload);
   var selection = request_info.actions[0].selected_options[0].value;
+
+  // return challenge info
   var challenge_info = data.findChallengeInfo(selection);
-  if (challenge_info) {
-    res.json(format.userStories(challenge_info));
-  }
-  else {
-    res.json({text: "Sorry - Information for that challenge hasn't been implemented yet."});
-  }
+  res.json(format.userStories(challenge_info));
 });
