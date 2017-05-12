@@ -27,7 +27,7 @@ function welcome(name) {
 // USER STORY RESPONSES (to deliver info on challenges)
 /////
 function userStories(challenge, message) {
-  
+
   // if no info, apologize
   if (!challenge) {
     return apology1();
@@ -57,7 +57,7 @@ function userStories(challenge, message) {
 }
 
 /////
-// DROPDOWN MENU OF CHALLENGES IN CATEGORY
+// DROPDOWN MENU OF CHALLENGES IN CERTIFICATE
 /////
 
 function categorySelector(data, message) {
@@ -66,9 +66,11 @@ function categorySelector(data, message) {
   if (!data) {
     return apology2();
   }
+  var [category, challenges] = data;
+  challenges = challenges.map(x => x.name);
 
   // build text of message
-  var text = `Are you looking for one the ${data.category} challenges?`;
+  var text = `Are you looking for one the ${category} challenges?`;
   if (message) {
     text = message + "\n" + text;
   }
@@ -80,16 +82,16 @@ function categorySelector(data, message) {
     type: 'select',
     options: []
   };
-  for (let i = 0; i < data.category.length; i++) {
+  for (let i = 0; i < challenges.length; i++) {
     action.options.push({
-      'text': data.challenges[i],
-      'value': data.challenges[i]
+      'text': challenges[i],
+      'value': challenges[i]
     });
   }
 
   // build attachment
   var attachment = {
-    fallback: formatUnorderedList(data.challenges),
+    fallback: formatUnorderedList(challenges),
     color: '#006400',
     callback_id: 'select-challenge',
     actions: [action]

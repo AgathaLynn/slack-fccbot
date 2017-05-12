@@ -1,7 +1,22 @@
 var Challenge = require('./../models/challengeSchema.js');
 
 function challengeInfo(name) {
-  return Challenge.findOne({name: name}).exec();
+  return challenges()
+  .then(
+    function(results) {
+      return looseMatch(name, results);
+    }
+  )
+  .then(
+    function fulfilled(match) {
+      if (match) {
+        return Challenge.findOne({name: match}).exec();
+      }
+      else {
+        return null;
+      }
+    }
+  );
 }
 
 function challengesInCertificate(name) {
@@ -13,7 +28,12 @@ function challengesInCertificate(name) {
   )
   .then(
     function fulfilled(match) {
-      return match ? Challenge.find({certificate: match}, 'name').exec() : null;
+      if (match) {
+        return Promise.all([match, Challenge.find({certificate: match}, 'name').exec()]);
+      }
+      else {
+        return null;
+      }
     }
   );
 }
@@ -27,7 +47,24 @@ function challengesInCategory(name) {
   )
   .then(
     function fulfilled(match) {
-      return match ? Challenge.find({category: match}, 'name').exec() : null;
+      if (match) {
+        return {
+          category: match,
+          matches: Challenge.find({category: match}, 'name').exec()
+        };
+      }
+      else {
+        return null;
+      }
+    }
+  );
+}
+
+function challenges() {
+  return Challenge.find({}, 'name').exec()
+  .then(
+    function fulfilled(data) {
+      return data.map(x => x.name);
     }
   );
 }
@@ -50,8 +87,6 @@ function certificates() {
   );
 }
 
-
-/* Helper function */
 function looseMatch(text, arr) {
   text = text.toLowerCase().replace(/\W/gi, "");
 

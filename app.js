@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 
 // for formatting reponses
-var data = require('./data.js');
+var data = require('./controllers/data.js');
 var format = require('./responses.js');
 
 // for getting data from database
@@ -52,35 +52,40 @@ app.get('/oauth', function(req, res) {
 // for interacting with user
 app.post('/fccbot', function(req, res) {
 
-  // declare response variable
-  var response;
-  var data = require('./controllers/data.js');
-
   // if user provides no info, let's help them along
   if (req.body.text === '') {
-    data.challengesInCertificate('Front End').then(function(data) {console.log(data)});
-    response = format.welcome(req.body.user_name);
+    res.json(format.welcome(req.body.user_name));
   }
 
   // otherwise, let's see if they sent a challenge name
   else {
-    let challenge = data.findChallenge(req.body.text);
-
-    // if we find a challenge, respond with info or apology
-    if (challenge) {
-      let challenge_info = data.findChallengeInfo(challenge);
-      response = format.userStories(challenge_info);
-    }
-
-    // if not, let's look for a category & respond appropriately
-    else {
-      let category = data.findChallengesByCategory(req.body.text);
-      response = format.categorySelector(category);
-    }
+    data.challengeInfo(req.body.text)
+    .then(
+      function fulfilled(info) {
+        if (info) {
+          response = format.userStories(info);
+        }
+        else {
+          return data.challengesInCertificate(req.body.text)
+          .then(
+            function fulfilled(info) {
+              response = format.categorySelector(info);
+            }
+          );
+        }
+      }
+    )
+    .then(
+      function fulfilled() {
+        res.json(response);
+      },
+      function rejected(reason) {
+        console.log("argggghhhhhhhhhh");
+        console.log(reason);
+        res.json({text: 'sorry - i broke something'});
+      }
+    );
   }
-
-  // okay... let's send back our response
-  res.json(response);
 });
 
 // handles response to "select challenge from category" drop-down menu
@@ -91,13 +96,14 @@ app.post('/select-challenge', function(req, res) {
   var selection = request_info.actions[0].selected_options[0].value;
 
   // respond with challenge info
-  Challenge.findOne({name: selection}, function(err, challenge) {
-    if (err) {
-      console.log(err);
+  data.challengeInfo(selection)
+  .then(
+    function fulfilled(info) {
+      res.json(format.userStories(info));
+    },
+    function rejected(reason) {
+      console.log(reason);
       res.json(format.userStories());
     }
-    else {
-      res.json(format.userStories(challenge));
-    }
-  });
+  );
 });
