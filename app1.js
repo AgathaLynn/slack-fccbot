@@ -54,11 +54,9 @@ app.post('/fccbot', function(req, res) {
 
   // declare response variable
   var response;
-  var data = require('./controllers/data.js');
 
   // if user provides no info, let's help them along
   if (req.body.text === '') {
-    data.challengesInCertificate('Front End').then(function(data) {console.log(data)});
     response = format.welcome(req.body.user_name);
   }
 

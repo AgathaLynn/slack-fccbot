@@ -27,7 +27,7 @@ function welcome(name) {
 // USER STORY RESPONSES (to deliver info on challenges)
 /////
 function userStories(challenge, message) {
-
+  
   // if no info, apologize
   if (!challenge) {
     return apology1();
@@ -108,7 +108,7 @@ function categorySelector(data, message) {
 
 // apology - not implemented
 function apology1() {
-  return {text: "Sorry - Information for that challenge hasn't been implemented yet."};
+  return {text: "Sorry - I can't find any information for that challenge."};
 }
 
 // apology - haven't a clue

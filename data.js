@@ -731,7 +731,6 @@ function findChallengeInfo(name) {
   return undefined;
 }
 
-module.exports.data = challenge_info;
 module.exports.findChallenge = findChallenge;
 module.exports.findChallengesByCategory = findChallengesByCategory;
 module.exports.findChallengeInfo = findChallengeInfo;
