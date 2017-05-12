@@ -124,17 +124,17 @@ function formatUserStories(challenge) {
   var rows = [];
 
   // add user stories
-  rows.push("User Stories:\n" + formatUnorderedList(challenge.stories));
+  rows.push("User Stories:\n" + formatUnorderedList(challenge.requirements.stories));
 
   // add hints, notes, updates
-  if (challenge.hints.length) {
-    rows.push("\nHints:\n" + formatUnorderedList(challenge.hints));
+  if (challenge.requirements.hints.length) {
+    rows.push("\nHints:\n" + formatUnorderedList(challenge.requirements.hints));
   }
-  if (challenge.notes.length) {
-    rows.push("\nNotes:\n" + formatUnorderedList(challenge.notes));
+  if (challenge.requirements.notes.length) {
+    rows.push("\nNotes:\n" + formatUnorderedList(challenge.requirements.notes));
   }
-  if (challenge.updates.length) {
-    rows.push("\nUpdates: \n" + formatUnorderedList(challenge.updates));
+  if (challenge.requirements.updates.length) {
+    rows.push("\nUpdates: \n" + formatUnorderedList(challenge.requirements.updates));
   }
 
   // return text
