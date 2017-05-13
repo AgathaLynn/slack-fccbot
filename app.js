@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const request = require('request');
 
 // for formatting reponses
-var data = require('./controllers/data.js');
-var format = require('./responses.js');
+var data = require('./scripts/data.js');
+var format = require('./scripts/message/responses.js');
 
 // for getting data from database
 const mongoose = require('mongoose');
@@ -63,13 +63,13 @@ app.post('/fccbot', function(req, res) {
     .then(
       function fulfilled(info) {
         if (info) {
-          response = format.userStories(info);
+          response = format.challengeInfo(info);
         }
         else {
           return data.challengesInCertificate(req.body.text)
           .then(
             function fulfilled(info) {
-              response = format.categorySelector(info);
+              response = format.sectionInfo(info);
             }
           );
         }
@@ -99,11 +99,11 @@ app.post('/select-challenge', function(req, res) {
   data.challengeInfo(selection)
   .then(
     function fulfilled(info) {
-      res.json(format.userStories(info));
+      res.json(format.challengeInfo(info));
     },
     function rejected(reason) {
       console.log(reason);
-      res.json(format.userStories());
+      res.json(format.challengeInfo());
     }
   );
 });
