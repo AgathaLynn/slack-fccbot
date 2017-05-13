@@ -33,7 +33,7 @@ function challengeSelector(challenges) {
 function generalInfo(challenge) {
   var text = `
   The "${challenge.name}" challenge is one of the ${challenge.category}.
-  You can view more information about this challenge at ${challenge.link}.
+  You can view more information about this challenge at <${challenge.link}|Free Code Camp>.
   `;
 
   return {
@@ -43,7 +43,6 @@ function generalInfo(challenge) {
     text: text
   };
 }
-
 
 // attachment containing user stories
 function userStories(name, requirements) {
