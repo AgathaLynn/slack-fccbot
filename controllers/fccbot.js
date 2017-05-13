@@ -5,6 +5,12 @@ var data = require('../models/access.js');
 
 router.post('/', function(req, res) {
 
+  // check verification token
+  if (req.body.token !== process.env.VERIFICATION_TOKEN) {
+    console.log('tokens don\'t match');
+    return;
+  }
+
   // if user provides no info, let's help them along
   if (req.body.text === '') {
     res.json(format.welcome(req.body.user_name));
