@@ -49,7 +49,8 @@ function challengeInfo(challenge, message) {
   return {
     text: text,
     attachments: [
-      attachments.userStories(challenge.name, challenge.requirements)
+      attachments.userStories(challenge.name, challenge.requirements),
+      attachments.generalInfo(challenge)
     ]
   };
 }

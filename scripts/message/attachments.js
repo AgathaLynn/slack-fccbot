@@ -29,12 +29,28 @@ function challengeSelector(challenges) {
   return attachment;
 }
 
+// attachment containing general info about challenge
+function generalInfo(challenge) {
+  var text = `
+  The "${challenge.name}" challenge is one of the ${challenge.category}.
+  You can view more information about this challenge at ${challenge.link}.
+  `;
+
+  return {
+    fallback: text,
+    color: '#006400',
+    title: "More Info",
+    text: text
+  };
+}
+
+
 // attachment containing user stories
 function userStories(name, requirements) {
   var attachment = {
     fallback: format.userStories(requirements),
     color: '#006400',
-    title: name,
+    title: name + ": Requirements",
     text: format.userStories(requirements)
   };
 
@@ -43,3 +59,4 @@ function userStories(name, requirements) {
 
 module.exports.challengeSelector = challengeSelector;
 module.exports.userStories = userStories;
+module.exports.generalInfo = generalInfo;
