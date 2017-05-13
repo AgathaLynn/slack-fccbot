@@ -4,29 +4,7 @@ Program to populate database with fcc challenge data
 - address of database is hardcoded into the program: CHECK THAT IT IS CORRECT
 */
 
-
-// requirements
-var mongoose = require('mongoose');
-var Challenge = require('../models/challengeSchema.js');
-
-// set up mongodb
-var url = 'mongodb://localhost:27017/fccbot';
-mongoose.connect(url);
-
-// put data in database
-for (let i = 0; i < data.length; i++) {
-  let challenge = new Challenge(data[i]);
-  challenge.save(function(err, obj) {
-    if (err) {
-      console.log("error at " + i + ":");
-      console.log(err);
-    }
-    else {
-      console.log(`${i}th item added`);
-    }
-  });
-}
-
+// data
 var data = [
   // front end certification
   {
@@ -607,3 +585,26 @@ var data = [
     link: 'https://www.freecodecamp.com/challenges/build-a-pinterest-clone '
   }
 ];
+
+// requirements
+var mongoose = require('mongoose');
+var Challenge = require('../models/challengeSchema.js');
+
+// set up mongodb
+require('dotenv').config();
+var url = process.env.DB;
+mongoose.connect(url);
+
+// put data in database
+for (let i = 0; i < data.length; i++) {
+  let challenge = new Challenge(data[i]);
+  challenge.save(function(err, obj) {
+    if (err) {
+      console.log("error at " + i + ":");
+      console.log(err);
+    }
+    else {
+      console.log(`${i}th item added`);
+    }
+  });
+}

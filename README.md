@@ -1,6 +1,6 @@
 # fccBot
 
-A Slack app providing an easy way to view the User Stories / Challenge Requirements for whatever Free Code Camp project you're currently working on. Right from Slack!
+A Slack app providing an easy way to view the User Stories / Challenge Requirements for whatever freeCodeCamp project you're currently working on. Right from Slack!
 
 ![fccBot in action](./assets/fccbot-usage.png)
 
@@ -41,3 +41,5 @@ Yes, please. Help and feedback are much appreciated!
 # Info/Credits
 
 A Build.to.Learn project, created by members of the Rhino cohort (a group of wannabe programmers learning together - more info [here](https://tropicalchancer.github.io/projectus/)). Many thanks to @periman2 for his help getting this project up and running!
+
+This is a personal project designed to help those working through the freeCodeCamp curriculum. It was not created or endorsed by freeCodeCamp... although I like to think that they would approve.
