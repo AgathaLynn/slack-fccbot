@@ -26,7 +26,10 @@ function welcome(name) {
   Like this: */fccbot front-end development*
   `;
 
-  return {text};
+  return {
+    response_type: 'ephemeral',
+    text
+  };
 }
 
 /////
@@ -47,6 +50,7 @@ function challengeInfo(challenge, message) {
   }
 
   return {
+    response_type: 'ephemeral',
     text: text,
     attachments: [
       attachments.userStories(challenge.name, challenge.requirements),
@@ -77,6 +81,7 @@ function sectionInfo(data, message) {
 
   // return object
   return {
+    response_type: 'ephemeral',
     text: text,
     attachments: [
       attachments.challengeSelector(challenges)
