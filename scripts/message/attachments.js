@@ -44,7 +44,6 @@ function generalInfo(challenge) {
   };
 }
 
-
 // attachment containing user stories
 function userStories(name, requirements) {
   var attachment = {
