@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 
 // for formatting reponses
-var data = require('./scripts/data.js');
+var data = require('./models/access.js');
 var format = require('./scripts/message/responses.js');
 
 // for getting data from database
