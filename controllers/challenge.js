@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var data = require('../models/access.js');
-var format = require('../scripts/message/responses.js');
+var format = require('../views/message/responses.js');
 
 router.post('/', function(req, res) {
 

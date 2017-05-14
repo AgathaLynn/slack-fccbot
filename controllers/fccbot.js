@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var format = require('../scripts/message/responses.js');
+var format = require('../views/message/responses.js');
 var data = require('../models/access.js');
 
 router.post('/', function(req, res) {
