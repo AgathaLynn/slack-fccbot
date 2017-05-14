@@ -4,7 +4,7 @@ var app = express();
 
 const bodyParser = require('body-parser');
 const request = require('request');
-require('dotenv').config();
+//require('dotenv').config();
 
 // for getting data from database
 const mongoose = require('mongoose');
