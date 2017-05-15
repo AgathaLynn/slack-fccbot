@@ -21,10 +21,17 @@ function welcome(name) {
 
   var greeting = greetings[Math.floor(Math.random() * greetings.length)];
   var text = `${greeting}
-  If you're looking for information about one of the Free Code Camp challenges, I'm here to help.
-  Just tell me the name of the challenge or what certificate you're working towards.
 
-  Like this: */fccbot front-end development*
+  If you're looking for information about one of the freeCodeCamp challenges, I'm here to help.
+  You can me know what challenge you're working on, like this:
+
+  :small_orange_diamond: */fccbot Tic Tac Toe* _or_ */fccbot tic-tac-toe game*
+
+  Not sure of the challenge name? Tell me what certificate you're working toward, and I'll take it from there:
+
+  :small_orange_diamond: */fccbot front-end development* _or_ */fccbot front end*
+
+  Happy Coding!
   `;
 
   return {

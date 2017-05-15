@@ -7,13 +7,13 @@ router.post('/', function(req, res) {
 
   // turn payload into an object, please
   var request_info = JSON.parse(req.body.payload);
-/*
+
   // check verification token
   if (request_info.token !== process.env.VERIFICATION_TOKEN) {
     console.log('tokens don\'t match');
     return;
   }
-*/
+
   // check what action we're responding to
   var action = request_info.callback_id;
   if (action === "select-challenge") {
