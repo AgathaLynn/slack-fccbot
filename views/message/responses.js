@@ -100,8 +100,18 @@ function apology1() {
 }
 
 // apology - haven't a clue
+/*
 function apology2() {
   return {text: "Sorry. Couldn't find that. If you tell me what certificate you're working towards, I might be able to help. Try '/fccbot [certificate name]'.'"};
+}
+*/
+function apology2() {
+  return {
+    text: "Sorry. I can't find a match for that.",
+    attachments: [
+      attachments.certificateSelector()
+    ]
+  };
 }
 
 module.exports.welcome = welcome;

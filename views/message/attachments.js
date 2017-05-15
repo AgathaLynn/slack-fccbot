@@ -1,5 +1,39 @@
 var format = require('./format.js');
 
+// attachment with buttons to select certificate
+function certificateSelector() {
+  var certificates = ["Front End", "Data Visualization", "Back End"];
+  var fallback = "Try typing `/fccbot` plus one of these certificate names:\n";
+  fallback += format.unorderedList("", certificates);
+
+  return {
+    text: 'What certificate are you working on?',
+    fallback: fallback,
+    callback_id: "select-certificate",
+    color: "#006400",
+    actions: [
+      {
+        name: "certificate",
+        text: "Front End",
+        type: "button",
+        value: "front end"
+      },
+      {
+        name: "certificate",
+        text: "Data Visualization",
+        type: "button",
+        value: "data visualization"
+      },
+      {
+        name: "certificate",
+        text: "Back End",
+        type: "button",
+        value: "back end"
+      }
+    ]
+  };
+}
+
 // attachment with drop-down menu to select challenge
 function challengeSelector(challenges) {
 
@@ -56,6 +90,7 @@ function userStories(name, requirements) {
   return attachment;
 }
 
+module.exports.certificateSelector = certificateSelector;
 module.exports.challengeSelector = challengeSelector;
 module.exports.userStories = userStories;
 module.exports.generalInfo = generalInfo;
