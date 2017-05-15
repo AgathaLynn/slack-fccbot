@@ -2,41 +2,67 @@
 
 <html lang='en'>
   <head>
-    <meta charset='utf-8'>
-    <title>fccBot - a freeCodeCamp user stories Slack bot</title>
-
+    <meta charest='utf8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>fccBot - a Slack bot for freeCodeCampers</title>
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600i,600" rel="stylesheet">
+    <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="main.css" rel="stylesheet"/>
   </head>
+
   <body>
     <header>
-      <h1>Hi! It's fccBot, at your service!</h1>
-      <p>Ever wish you could get information about a freeCodeCamp challenge? Right from Slack?</p>
-      <p>Now you can. Whether you're looking for a linked resource, are curious about a project objective, or just want to double-check the user stories for whatever you're working on, fccBot has your back. Just install the slack app, then summon fccBot whenever you need help.</p>
-      <p>It's that easy.</p>
+      <h1>
+        <span class='icon'><i class='fa fa-free-code-camp'></i></span>
+        fccBot
+      </h1>
+      <div class="btn">
+        <a href="https://slack.com/oauth/authorize?&client_id=173894465014.172581686320&scope=commands"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a></a>
+      </div>
     </header>
 
-    <section class="content">
-
-      <h2>fccBot in Action</h2>
-      <p>To get information from fccBot, all you have to do is ask. He's (mostly) happy to help.</p>
-
-      <section>
-        <p>You can ask for information on a specific challenge, and even use a partial challenge name:</p>
-        <img src="/fccbot-response.png"></img>
+    <section class="intro">
+      <section class="agd">
+        <h2>Meet fccBot - the slack bot for freeCodeCampers</h2>
+        <p>Ever wish you could get information about a freeCodeCamp challenge? Right from Slack?</p>
+        <p>With fccBot, you can!</p>
       </section>
 
       <section>
-        <p>Still running into trouble? Just tell fccBot what certificate you're working towards, and he'll take it from there:</p>
-        <img src="/fccbot-dropdown.png"></img>
+        <video controls>
+          <source src="fccbot_demo.mp4" type="video/mp4"/>
+          <img src="fccbot-response.png"/>
+        </video>
       </section>
-
     </section>
 
-    <section class="content">
-      <h2>Where can I learn more?</h2>
-      <p>fccBot was created by members of the <a href="https://tropicalchancer.github.io/projectus/">Chingu Cohorts</a> - student programmers learning together. The fccBot is not part of the freeCodeCamp project and was not created or endorsed by freeCodeCamp - but we like to think they'd approve.</p>
-      <p>To learn more about fccBot, check out the <a href="https://github.com/AgathaLynn/rhino-bot-project">GitHub repository</a> for the fccBot project.</p>
+    <section>
+      <section class="group">
+        <div class="item">
+          <span><i class="fa fa-search"></i></span>
+          <h3>Search by challenge or certificate</h3>
+        </div><!--
+     --><div class="item">
+          <span><i class="fa fa-info-circle"></i></span>
+          <h3>View user stories for challenges</h3>
+        </div><!--
+     --><div class="item">
+          <span><i class="fa fa-link"></i></span>
+          <h3>Get links to information and resources</h3>
+        </div>
+      </section>
+
+      <section class="about">
+        <h2>About</h2>
+        <p>fccBot was created by members of the <a href="https://tropicalchancer.github.io/projectus/">Chingu Cohorts</a> - student programmers learning together. The fccBot is not part of the freeCodeCamp project and was not created or endorsed by freeCodeCamp - but we like to think they'd approve.</p>
+        <p>To learn more about fccBot, check out the <a href="https://github.com/AgathaLynn/rhino-bot-project">GitHub repository</a> for the fccBot project.</p>
+      </section>
+
+      <footer>
+          <a class="footer-link" href="https://slack.com/"><i class="fa fa-slack"></i><a>
+          <a class="footer-link" href="https://github.com/AgathaLynn/rhino-bot-project"><i class="fa fa-github"></i></a>
+          <a class="footer-link" href="https://www.freecodecamp.com"><i class="fa fa-free-code-camp"></i></a>
+      </footer>
     </section>
   </body>
 </html>
