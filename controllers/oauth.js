@@ -17,9 +17,10 @@ router.get('/', function(req, res) {
     }, function(error, response, body) {
       if (error) {
         console.log(error);
+        res.send("Oops. Error.");
       }
       else {
-        res.json(body);
+        res.send("Congratulations! You have successfully installed fccbot to " + body.team_name + "!");
       }
     });
   }
