@@ -115,7 +115,8 @@ section {
   border-bottom: 3px solid #006400;
 }
 
-video {
+video,
+.fallback {
   width: 700px;
   max-width: 95%;
   height: auto;
