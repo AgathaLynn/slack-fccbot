@@ -10,7 +10,7 @@ function certificateSelector() {
     text: 'What certificate are you working on?',
     fallback: fallback,
     callback_id: "select-certificate",
-    color: "#006400",
+    color: "#770000",
     actions: [
       {
         name: "certificate",
@@ -54,7 +54,7 @@ function challengeSelector(challenges) {
   // build attachment
   var attachment = {
     fallback: format.unorderedList('', challenges),
-    color: '#006400',
+    color: '#770000',
     callback_id: 'select-challenge',
     actions: [action]
   };
@@ -72,7 +72,7 @@ function generalInfo(challenge) {
 
   return {
     fallback: text,
-    color: '#006400',
+    color: '#770000',
     title: "More Info",
     text: text
   };
@@ -82,7 +82,7 @@ function generalInfo(challenge) {
 function userStories(name, requirements) {
   var attachment = {
     fallback: format.userStories(requirements),
-    color: '#006400',
+    color: '#770000',
     title: name + ": Requirements",
     text: format.userStories(requirements)
   };

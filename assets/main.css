@@ -12,7 +12,7 @@ body {
 /* HEADER BAR */
 
 header {
-  background: #006400;
+  background: #770000;
   color: white;
   position: fixed;
   width: 100%;
@@ -50,7 +50,7 @@ section {
   font-size: 1.7em;
   text-align: center;
   margin: 0 auto;
-  border-bottom: 3px solid #006400;
+  border-bottom: 3px solid #770000;
 }
 
 .agd {
@@ -98,7 +98,7 @@ section {
 .item {
   width: 300px;
   height: 200px;
-  border: 4px solid #006400;
+  border: 4px solid #770000;
   border-radius: 5px;
   font-size: 20px;
   text-align: center;
@@ -114,8 +114,8 @@ section {
 /* USAGE SECTION */
 
 .usage {
-  border-top: 3px solid #006400;
-  border-bottom: 3px solid #006400;
+  border-top: 3px solid #770000;
+  border-bottom: 3px solid #770000;
 }
 
 video,
@@ -172,7 +172,7 @@ video,
 }
 
 a {
-  color: #006400;
+  color: #770000;
 }
 
 footer {
