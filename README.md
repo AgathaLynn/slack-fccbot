@@ -2,8 +2,6 @@
 
 A Slack app providing an easy way to view the User Stories / Challenge Requirements for whatever freeCodeCamp project you're currently working on. Right from Slack!
 
-![fccBot in action](./assets/fccbot-usage.png)
-
 # I *want* it...
 
 Good news! You, too, can use fccBot. To install the app to your Slack team, head over to the [project webpage](http://slack-fccbot.herokuapp.com/) and click the "Add to Slack" button.

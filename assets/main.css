@@ -125,7 +125,8 @@ video,
   vertical-align: middle;
 }
 
-.demo {
+.demo,
+.add-button {
   padding: 100px 5%;
   text-align: center;
 }
@@ -162,16 +163,10 @@ video,
   background: #f8f8f8;
 }
 
-/*
-.about {
-  clear: both;
-  max-width: 1050px;
-  margin: 50px auto;
-  padding: 0 10px;
-  font-size: 1.3em;
-  text-align: center;
+.add-button img {
+  padding-top: 20px;
 }
-*/
+
 a {
   color: #006400;
 }
