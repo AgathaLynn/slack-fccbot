@@ -13,6 +13,8 @@ If you'd prefer to create your own fccBot clone, I'd love to see what you come u
 
 You boss him around, and he (mostly) does what he's told.
 
+## /fccbot
+
 Type `/fccbot` to see a welcome message and usage hints:
 
 ```
@@ -20,6 +22,8 @@ Type `/fccbot` to see a welcome message and usage hints:
 ```
 
 ![fccbot welcome message](./assets/demos/fccbot-welcome-cropped.jpg)
+
+## /fccbot [challenge name]
 
 Type `/fccbot [challenge name]` to see information on one of the freeCodeCamp challenges. The fccBot will also recognize many partial challenge names:
 
@@ -29,13 +33,17 @@ Type `/fccbot [challenge name]` to see information on one of the freeCodeCamp ch
 
 ![fccbot tictactoe challenge info](./assets/demos/tictactoe.jpg)
 
+## /fccbot [certificate name]
+
 You can also search projects by certificate. Type `/fccbot [certificate name]` to select a challenge:
 
 ```
 /fccbot back end
 ```
 
-![dropdown menu](./assets/demos/backend-dropdown-cropped.jpg)
+![dropdown menu](./assets/demos/backend-dropdown-cropped.png)
+
+## /fccbot [oops!]
 
 If you can't remember a challenge name, fccBot will point you in the right direction:
 
@@ -43,7 +51,7 @@ If you can't remember a challenge name, fccBot will point you in the right direc
 /fccbot harry potter
 ```
 
-![category selection menu](./assets/demos/hp-category-cropped.jpg)
+![category selection menu](./assets/demos/hp-category-cropped.png)
 
 # Can I help?
 
