@@ -82,7 +82,7 @@ function sectionInfo(data, message) {
   challenges = challenges.map(x => x.name);
 
   // build text of message
-  var text = `Are you looking for one the ${section} challenges?`;
+  var text = `Are you looking for one of the ${section} challenges?`;
   if (message) {
     text = message + "\n" + text;
   }
@@ -107,11 +107,6 @@ function apology1() {
 }
 
 // apology - haven't a clue
-/*
-function apology2() {
-  return {text: "Sorry. Couldn't find that. If you tell me what certificate you're working towards, I might be able to help. Try '/fccbot [certificate name]'.'"};
-}
-*/
 function apology2() {
   return {
     text: "Sorry. I can't find a match for that.",
